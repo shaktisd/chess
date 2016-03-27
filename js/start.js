@@ -18,7 +18,7 @@ var greySquare = function(square) {
 };
 
 var onDragStart = function(source, piece) {
-
+removeGreySquares();
 };
 
 
@@ -46,6 +46,7 @@ var onMouseoutSquare = function(square, piece) {
 
 var onSnapEnd = function() {
   //board.position(game.fen());
+  removeGreySquares();
 };
 
 /*
@@ -62,9 +63,11 @@ var cfg = {
 var cfg =
 {
   draggable: true,
+  onDragStart: onDragStart,
   onMouseoutSquare: onMouseoutSquare,
   onMouseoverSquare: onMouseoverSquare,
   dropOffBoard: 'trash',
+  onSnapEnd: onSnapEnd,
   sparePieces: true
 };
 
