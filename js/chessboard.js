@@ -1505,8 +1505,7 @@ function touchstartSquare(e) {
   }
 
   e = e.originalEvent;
-  beginDraggingPiece(square, CURRENT_POSITION[square],
-    e.changedTouches[0].pageX, e.changedTouches[0].pageY);
+  beginDraggingPiece(square, CURRENT_POSITION[square],e.changedTouches[0].pageX, e.changedTouches[0].pageY);
 }
 
 function mousedownSparePiece(e) {
@@ -1543,8 +1542,7 @@ function touchmoveWindow(e) {
   // prevent screen from scrolling
   e.preventDefault();
 
-  updateDraggedPiece(e.originalEvent.changedTouches[0].pageX,
-    e.originalEvent.changedTouches[0].pageY);
+  updateDraggedPiece(e.originalEvent.changedTouches[0].pageX,e.originalEvent.changedTouches[0].pageY);
 }
 
 function mouseupWindow(e) {
@@ -1589,8 +1587,7 @@ function mouseenterSquare(e) {
   }
 
   // execute their function
-  cfg.onMouseoverSquare(square, piece, deepCopy(CURRENT_POSITION),
-    CURRENT_ORIENTATION);
+  cfg.onMouseoverSquare(square, piece, deepCopy(CURRENT_POSITION),CURRENT_ORIENTATION);
 }
 
 function mouseleaveSquare(e) {
@@ -1652,8 +1649,7 @@ function addEvents() {
   // touch drag pieces
   if (isTouchDevice() === true) {
     boardEl.on('touchstart', '.' + CSS.square, touchstartSquare);
-    containerEl.on('touchstart', '.' + CSS.sparePieces + ' .' + CSS.piece,
-      touchstartSparePiece);
+    containerEl.on('touchstart', '.' + CSS.sparePieces + ' .' + CSS.piece,touchstartSparePiece);
     $(window).on('touchmove', touchmoveWindow)
       .on('touchend', touchendWindow);
   }

@@ -17,14 +17,36 @@ var greySquare = function(square) {
   squareEl.css('background', background);
 };
 
-var onDragStart = function(source, piece) {
-//removeGreySquares();
-};
-
-
-var onDrop = function(source, target) {
+var onDragStart = function(source, piece, position, orientation) {
 
 };
+
+
+var onDrop = function(source, target, piece, newPos, oldPos, orientation) {
+  console.log("Source: " + source);
+  console.log("Target: " + target);
+  console.log("Piece: " + piece);
+  console.log("New position: " + ChessBoard.objToFen(newPos));
+  console.log("Old position: " + ChessBoard.objToFen(oldPos));
+  console.log("Orientation: " + orientation);
+  console.log("--------------------");
+
+  removeGreySquares();
+  // get list of possible moves for this square
+  var allMoves = listMoves(target,piece);
+  //console.log("All Moves " +  allMoves);
+  // exit if there are no moves available for this square
+  if (typeof allMoves == 'undefined' || allMoves.length === 0) return;
+  // highlight the square they moused over
+  greySquare(target);
+  // highlight the possible squares for this piece
+  for (var i = 0; i < allMoves.length; i++) {
+    greySquare(allMoves[i]);
+  }
+
+
+};
+
 
 var onMouseoverSquare = function(square, piece) {
     removeGreySquares();
