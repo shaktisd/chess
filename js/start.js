@@ -25,11 +25,11 @@ var greySquare = function(square) {
 var onDragStart = function(source, piece) {
   // do not pick up pieces if the game is over
   // or if it's not that side's turn
-  if (game.game_over() === true ||
+/*  if (game.game_over() === true ||
       (game.turn() === 'w' && piece.search(/^b/) !== -1) ||
       (game.turn() === 'b' && piece.search(/^w/) !== -1)) {
     return false;
-  }
+  }*/
 };
 
 
@@ -37,36 +37,37 @@ var onDrop = function(source, target) {
   removeGreySquares();
 
   // see if the move is legal
+  /*
   var move = game.move({
     from: source,
     to: target,
     promotion: 'q' // NOTE: always promote to a queen for example simplicity
   });
-
+*/
   // illegal move
   //if (move === null) return 'snapback';
 };
 
 var onMouseoverSquare = function(square, piece) {
   // get list of possible moves for this square
-  var moves = game.moves({
+  /*var moves = game.moves({
     square: square,
     verbose: true
-  });
+  });*/
   var allMoves = listMoves(square,piece);
   console.log("All Moves " +  allMoves);
 
   //console.log(moves)
 
   // exit if there are no moves available for this square
-  if (moves.length === 0) return;
+  if (allMoves.length === 0) return;
 
   // highlight the square they moused over
   greySquare(square);
 
   // highlight the possible squares for this piece
-  for (var i = 0; i < moves.length; i++) {
-    greySquare(moves[i].to);
+  for (var i = 0; i < allMoves.length; i++) {
+    greySquare(allMoves[i]);
   }
 };
 
