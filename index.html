@@ -1,0 +1,32 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Highlight Legal Moves Example</title>
+    <base href=".">
+    <link rel="stylesheet" href="./css/chessboard.css" />
+    <script src="js/chess.js"></script>
+    <script src="js/json3.min.js"></script>
+    <script src="js/jquery-1.10.1.min.js"></script>
+    <script src="js/chessboard.js"></script>
+    <script src="js/movegeneration.js"></script>
+    <script src="js/start.js"></script>
+</head>
+<body>
+
+
+<div id="board" style="width: 400px"></div>
+<!-- end example HTML --->
+
+
+<script type="text/javascript">
+function callStartFunction() {
+initGame();
+}
+$(document).ready(callStartFunction);
+
+</script>
+</body>
+</html>
