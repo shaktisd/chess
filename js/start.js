@@ -18,7 +18,7 @@ var greySquare = function(square) {
 };
 
 var onDragStart = function(source, piece) {
-removeGreySquares();
+//removeGreySquares();
 };
 
 
@@ -27,6 +27,7 @@ var onDrop = function(source, target) {
 };
 
 var onMouseoverSquare = function(square, piece) {
+    removeGreySquares();
 // get list of possible moves for this square
     var allMoves = listMoves(square,piece);
     //console.log("All Moves " +  allMoves);
@@ -41,7 +42,7 @@ var onMouseoverSquare = function(square, piece) {
 };
 
 var onMouseoutSquare = function(square, piece) {
-  removeGreySquares();
+  //removeGreySquares();
 };
 
 var onSnapEnd = function() {
