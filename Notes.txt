@@ -1,0 +1,114 @@
+1. Rook
+on event get the current location
+give output as current row ( 8 squares ) (x=(0-8),y=Y)
+give output as current column ( 8 squares ) (x=X,y=(0-8))
+
+2. Bishop
+=(x+1,y+1)
+
+
+   +------------------------+
+ 8 | r  n  b  q  k  b  n  r |
+ 7 | p  .  p  p  p  p  p  p |
+ 6 | .  .  .  .  .  .  .  . |
+ 5 | .  p  .  .  .  .  .  . |
+ 4 | .  P  .  .  .  .  .  . |
+ 3 | .  .  .  .  .  .  .  . |
+ 2 | P  .  P  P  P  P  P  P |
+ 1 | R  N  B  Q  K  B  N  R |
+   +------------------------+
+     a  b  c  d  e  f  g  h
+
+http://programmers.stackexchange.com/questions/160740/best-approach-for-writing-a-chess-engine
+ First, figuring out how to represent the basic legal moves.
+ You have to kind of do math with the beginning and ending coordinates.
+ For instance, with rook moves, one of the coordinates has to be the same before and after.
+ With knight moves, the sum of the absolute value of the coordinate changes has to be 3, and both coordinates must change.
+ With bishop moves, either the sum of the coordinates remains the same, or they both increase by the same amount.
+ Pawns are trickiest because you not only have to figure out if they can move two squares or one (check the row and the color instead of storing how many moves they've made) but also have to deal with the whole capture-diagonally,
+ move-forward thing.
+
+
+ private List<Position> getKingPositions(int row, int col){
+ 		List<Position> validPositions = new ArrayList<Position>();
+ 		for(int i=-1 ;i<=1 ;i++){
+ 			for(int j=-1; j<=1 ; j++){
+ 				if(!(row + i < 0 || row + i > size-1 || col + j < 0 || col + j > size-1 )){
+ 					validPositions.add(new Position(row + i,col+j,State.UNSAFE));
+ 				}
+
+ 			}
+ 		}
+ 		return validPositions;
+
+ 	}
+
+ 	private List<Position> getKnightPositions(int row,int col){
+ 		List<Position> validPositions = new ArrayList<Position>();
+
+ 		validPositions.add(new Position(row,col,State.UNSAFE));
+
+ 		if(row-1 >= 0 && col-2 >= 0 ) {
+ 			validPositions.add(new Position(row-1,col-2,State.UNSAFE));
+ 		}
+
+ 		if(row-2 >= 0 && col-1 >= 0){
+ 			validPositions.add(new Position(row-2,col-1,State.UNSAFE));
+ 		}
+
+ 		if(row-2 >= 0 && col+1 < size) {
+ 			validPositions.add(new Position(row-2,col+1,State.UNSAFE));
+ 		}
+
+ 		if(row-1 >= 0 && col+2 < size){
+ 			validPositions.add(new Position(row-1,col+2,State.UNSAFE));
+ 		}
+
+ 		if(row+1 < size && col-2 >= 0){
+ 			validPositions.add(new Position(row+1,col-2,State.UNSAFE));
+ 		}
+
+ 		if(row+1 < size && col+2 < size){
+ 			validPositions.add(new Position(row+1,col+2,State.UNSAFE));
+ 		}
+
+ 		if(row + 2 < size && col-1 >= 0){
+ 			validPositions.add(new Position(row+2,col-1,State.UNSAFE));
+ 		}
+
+ 		if(row + 2 < size && col+1 < size){
+ 			validPositions.add(new Position(row+2,col+1,State.UNSAFE));
+ 		}
+ 		return validPositions;
+ 	}
+
+ 	private List<Position> getRookPositions(int row, int col) {
+ 		List<Position> validPositions = new ArrayList<Position>();
+ 		for(int x=0; x<size ;x++){
+ 			validPositions.add(new Position(x,col,State.UNSAFE));
+ 		}
+ 		for(int y=0; y<size ;y++){
+ 			validPositions.add(new Position(row,y,State.UNSAFE));
+ 		}
+ 		return validPositions;
+ 	}
+
+ 	private List<Position> getBishopPositions(int row, int col) {
+ 		List<Position> validPositions = new ArrayList<Position>();
+ 		for (int x = row, y = col; (x < size && y < size); x++, y++) {
+ 			validPositions.add(new Position(x, y,State.UNSAFE));
+ 		}
+
+ 		for (int x = row, y = col; (x >= 0 && y < size); x--, y++) {
+ 			validPositions.add(new Position(x, y,State.UNSAFE));
+ 		}
+
+ 		for (int x = row, y = col; (x >= 0 && y >= 0); x--, y--) {
+ 			validPositions.add(new Position(x, y,State.UNSAFE));
+ 		}
+
+ 		for (int x = row, y = col; (x < size && y >= 0); x++, y--) {
+ 			validPositions.add(new Position(x, y,State.UNSAFE));
+ 		}
+ 		return validPositions;
+ 	}
