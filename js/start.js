@@ -23,21 +23,21 @@ removeGreySquares();
 
 
 var onDrop = function(source, target) {
-  removeGreySquares();
+
 };
 
 var onMouseoverSquare = function(square, piece) {
-  // get list of possible moves for this square
-  var allMoves = listMoves(square,piece);
-  console.log("All Moves " +  allMoves);
-  // exit if there are no moves available for this square
-  if (typeof allMoves == 'undefined' || allMoves.length === 0) return;
-  // highlight the square they moused over
-  greySquare(square);
-  // highlight the possible squares for this piece
-  for (var i = 0; i < allMoves.length; i++) {
-    greySquare(allMoves[i]);
-  }
+// get list of possible moves for this square
+    var allMoves = listMoves(square,piece);
+    //console.log("All Moves " +  allMoves);
+    // exit if there are no moves available for this square
+    if (typeof allMoves == 'undefined' || allMoves.length === 0) return;
+    // highlight the square they moused over
+    greySquare(square);
+    // highlight the possible squares for this piece
+    for (var i = 0; i < allMoves.length; i++) {
+      greySquare(allMoves[i]);
+    }
 };
 
 var onMouseoutSquare = function(square, piece) {
@@ -46,7 +46,7 @@ var onMouseoutSquare = function(square, piece) {
 
 var onSnapEnd = function() {
   //board.position(game.fen());
-  removeGreySquares();
+  //removeGreySquares();
 };
 
 /*
@@ -64,6 +64,7 @@ var cfg =
 {
   draggable: true,
   onDragStart: onDragStart,
+  onDrop: onDrop,
   onMouseoutSquare: onMouseoutSquare,
   onMouseoverSquare: onMouseoverSquare,
   dropOffBoard: 'trash',

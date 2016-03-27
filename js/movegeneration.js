@@ -1,6 +1,6 @@
 function listMoves(square, piece) {
 var SIZE = 8;
-console.log("move gen " + square + " " + piece);
+//console.log("move gen " + square + " " + piece);
 if(!piece){
 return }
 var row = square.split("")[0].charCodeAt()-97;
@@ -100,7 +100,7 @@ for(var i=-1 ;i<=1 ;i++){
     }
 }
 }
-console.log(result)
+//console.log(result)
 
 var newresult = [];
 for(var r = 0 ; r < result.length; r++ ){
@@ -108,8 +108,8 @@ for(var r = 0 ; r < result.length; r++ ){
     newresult.push(pos);
 }
 
-console.log("NEW RESULT ");
-console.log(newresult);
+//console.log("NEW RESULT ");
+//console.log(newresult);
 
 return newresult
 
