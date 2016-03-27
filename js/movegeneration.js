@@ -94,7 +94,7 @@ for(var i=-1 ;i<=1 ;i++){
     for(var j=-1; j<=1 ; j++){
         if(!(row + i < 0 || row + i > SIZE-1 || col + j < 0 || col + j > SIZE-1 )){
             var x = row+i;
-            var y = row+j;
+            var y = col+j;
             result.push({x,y});
         }
     }
