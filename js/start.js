@@ -31,6 +31,10 @@ var onDrop = function(source, target, piece, newPos, oldPos, orientation) {
   console.log("Orientation: " + orientation);
   console.log("--------------------");
 
+  var allSourceMoves = listMoves(source,piece);
+  if(source != 'spare' && allSourceMoves.indexOf(target) === -1) {
+    return 'snapback';
+  }
   removeGreySquares();
   // get list of possible moves for this square
   var allMoves = listMoves(target,piece);
